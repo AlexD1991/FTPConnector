@@ -39,6 +39,7 @@ public class Runner {
                 BufferedReader br = new BufferedReader(new FileReader(newFile));
 
                 String st;
+
                 while ((st = br.readLine()) != null)
                     System.out.println(st);
             }
