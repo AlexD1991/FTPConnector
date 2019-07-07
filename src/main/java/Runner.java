@@ -1,88 +1,58 @@
 import java.io.*;
-import java.lang.reflect.Array;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.net.URLConnection;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.Arrays;
 import java.util.Enumeration;
-import java.util.Vector;
+import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
 
-import com.jcraft.jsch.*;
-import org.w3c.dom.Document;
-
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
+import static javax.swing.UIManager.getString;
 
 /**
  * Created by aleksey.dobrovolsky on 7/5/2019.
  */
 public class Runner {
 
-    public static void main(String args[]) throws IOException {
-        JSch jsch = new JSch();
-        Session session = null;
+    public static void main(String args[]) throws Exception {
 
-        ZipFile warFile = new ZipFile( "D:\\test.war" );
-        for(Enumeration e = warFile.entries(); e.hasMoreElements(); )
-        {
-            ZipEntry entry = (ZipEntry) e.nextElement();
-            if (entry.getName().contains("index.html")) {
-                System.out.println(entry.getName());
-                InputStream is = warFile.getInputStream(entry);
-                Files.copy(is, Paths.get("D:\\index.html"));
-                File newFile = new File("D:\\index.html");
-                BufferedReader br = new BufferedReader(new FileReader(newFile));
+        Directories directories = new Directories();
 
-                String st;
-
-                while ((st = br.readLine()) != null)
-                    System.out.println(st);
+        for (Widget widget : directories.getDirectories()) {
+            if (widget.getWidgetName().equals("DR")) {
+                WarFIleDocReader warFileProd = new WarFIleDocReader(widget.getWidgetDirectoryProd());
+                WarFIleDocReader warFileDev = new WarFIleDocReader(widget.getWidgetDirectoryDev());
+                System.out.println(widget.getWidgetName());
+                System.out.println("dev - " + warFileDev.getDevLogin() + " " + warFileDev.getCertificateId());
+                System.out.println("prod - " + warFileProd.getDevLogin() + " " + warFileProd.getCertificateId());
+                System.out.println();
+            } else if (widget.getWidgetName().equals("DocAudit")){
+                WarFileAurelia warFileProd = new WarFileAurelia(widget.getWidgetDirectoryProd());
+                WarFileAurelia warFileDev = new WarFileAurelia(widget.getWidgetDirectoryDev());
+                System.out.println(widget.getWidgetName());
+                System.out.println("dev - " + warFileDev.getDevLogin() + " " + warFileDev.getCertificateId());
+                System.out.println("prod - " + warFileProd.getDevLogin() + " " + warFileProd.getCertificateId());
+                System.out.println();
+            } else {
+                WarFile warFileProd = new WarFile(widget.getWidgetDirectoryProd());
+                WarFile warFileDev = new WarFile(widget.getWidgetDirectoryDev());
+                System.out.println(widget.getWidgetName());
+                System.out.println("dev - " + warFileDev.getDevLogin() + " " + warFileDev.getCertificateId());
+                System.out.println("prod - " + warFileProd.getDevLogin() + " " + warFileProd.getCertificateId());
+                System.out.println();
             }
+
         }
 
-//            if( entry.getName().contains( "index.html" ) )
-//            {
-//                //read your xml file
-//                File fXmlFile = new File( entry );
-//                DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-//                DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-//                Document doc = dBuilder.parse(fXmlFile);
-//
-//
-//                /**Now write your xml file to another file and save it say, createXMLFile **/
-//
-//                //Appending the newly created xml file and
-//                //deleting the old one.
-//                Map<String, String> zip_properties = new HashMap<>();
-//                zip_properties.put("create", "false");
-//                zip_properties.put("encoding", "UTF-8");
-//
-//                URI uri = URI.create( "jar:" + warFile.toUri() );
-//
-//                try( FileSystem zipfs = FileSystems.newFileSystem(uri, zip_properties) ) {
-//
-//                    Path yourXMLFile = zipfs.getPath( yourXMLFile );
-//                    Path tempyourXMLFile = yourXMLFile;
-//                    Files.delete( propertyFilePathInWar );
-//
-//                    //Path where the file to be added resides
-//                    Path addNewFile = Paths.get( createXMLFile );
-//
-//                    //Append file to war File
-//                    Files.copy(addNewFile, tempyourXMLFile);
-//                    zipfs.close();
-//
-//                }
-//            }
-        }
+//        WarFile warFileProd = new WarFile(warFileProdDirectory, entryName);
+//        WarFile warFileDev = new WarFile(warFileDevDirectory, entryName);
+//        System.out.println("dev - " + warFileDev.getDevLogin() + " "+warFileDev.getCertificateId());
+//        System.out.println("prod - " + warFileProd.getDevLogin() + " "+warFileProd.getCertificateId());
+    }
 
-
-
+//    public void copyWarFile() {
+//        JSch jsch = new JSch();
+//        Session session = null;
 //        try {
 //            session = jsch.getSession("adobrovolsky", "10.12.10.60", 22);
 //            session.setConfig("StrictHostKeyChecking", "no");
@@ -99,10 +69,6 @@ public class Runner {
 //            Files.copy(inputStream, Paths.get(fileDir));
 //            File file = new File(fileDir);
 //
-//
-//
-//
-//
 //            System.out.println("finished");
 //
 //            sftpChannel.exit();
@@ -111,6 +77,17 @@ public class Runner {
 //            e.printStackTrace();
 //        } catch (SftpException e) {
 //            e.printStackTrace();
+//        } catch (IOException e) {
+//            e.printStackTrace();
 //        }
-    }
+//    }
+}
+
+
+
+
+
+
+
+
 
