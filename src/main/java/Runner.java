@@ -1,11 +1,4 @@
-import java.io.*;
-import java.util.Enumeration;
-import java.util.Scanner;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-import java.util.zip.ZipEntry;
-import java.util.zip.ZipFile;
-
+import java.util.ArrayList;
 
 import static javax.swing.UIManager.getString;
 
@@ -15,6 +8,14 @@ import static javax.swing.UIManager.getString;
 public class Runner {
 
     public static void main(String args[]) throws Exception {
+
+        Properties properties = new Properties();
+        ArrayList<WidgetProperty> widgets = properties.getWidgetsList();
+
+        for (WidgetProperty widget1 : widgets) {
+            new WarFileCopy(widget1.getWidgetName(), widget1.getWidgetVersion(), true);
+            new WarFileCopy(widget1.getWidgetName(), widget1.getWidgetVersion(), false);
+        }
 
         Directories directories = new Directories();
 
@@ -41,46 +42,8 @@ public class Runner {
                 System.out.println("prod - " + warFileProd.getDevLogin() + " " + warFileProd.getCertificateId());
                 System.out.println();
             }
-
         }
-
-//        WarFile warFileProd = new WarFile(warFileProdDirectory, entryName);
-//        WarFile warFileDev = new WarFile(warFileDevDirectory, entryName);
-//        System.out.println("dev - " + warFileDev.getDevLogin() + " "+warFileDev.getCertificateId());
-//        System.out.println("prod - " + warFileProd.getDevLogin() + " "+warFileProd.getCertificateId());
     }
-
-//    public void copyWarFile() {
-//        JSch jsch = new JSch();
-//        Session session = null;
-//        try {
-//            session = jsch.getSession("adobrovolsky", "10.12.10.60", 22);
-//            session.setConfig("StrictHostKeyChecking", "no");
-//            session.setPassword("xxx");
-//            session.connect();
-//
-//            Channel channel = session.openChannel("sftp");
-//            channel.connect();
-//            ChannelSftp sftpChannel = (ChannelSftp) channel;
-//            sftpChannel.cd("/builds/minsk/widgets/HTMLSigningTableApp/1.0.0.10/");
-//            InputStream inputStream = sftpChannel.get("signing-table-app-1.0.0.10.war");
-//
-//            String fileDir = "D:\\test.war";
-//            Files.copy(inputStream, Paths.get(fileDir));
-//            File file = new File(fileDir);
-//
-//            System.out.println("finished");
-//
-//            sftpChannel.exit();
-//            session.disconnect();
-//        } catch (JSchException e) {
-//            e.printStackTrace();
-//        } catch (SftpException e) {
-//            e.printStackTrace();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//    }
 }
 
 

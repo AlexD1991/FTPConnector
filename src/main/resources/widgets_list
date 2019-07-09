@@ -1,0 +1,10 @@
+{
+  "widgets":
+  [
+    {
+      "name": "TestWidget",
+      "version": "19.5.2.3"
+    }
+  ]
+
+}
