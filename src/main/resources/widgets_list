@@ -2,8 +2,12 @@
   "widgets":
   [
     {
-      "name": "TestWidget",
-      "version": "19.5.2.3"
+      "name": "HTMLDocumentReader",
+      "version": "19.7.1.10"
+    },
+    {
+      "name": "HTMLSigningTableApp",
+      "version": "19.7.1.4"
     }
   ]
 

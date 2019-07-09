@@ -7,7 +7,7 @@ import java.util.zip.ZipFile;
 class WarFileAurelia extends WarFile{
 
     private String regexpCertificateId = "(?<=certificateId\": \")[a-zA-Z0-9]*(?=\",)";
-    private String regexpLoginForm = "(?<=restricted_features\": ).*(login)";
+    private String regexpLoginForm = "(?<=dev_login\": )(true|false)";
     private String entryName = "dist/common/config/app.json";
 
     WarFileAurelia(String warFileDirectory) throws IOException {
