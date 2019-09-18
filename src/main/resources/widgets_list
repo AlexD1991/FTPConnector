@@ -2,13 +2,24 @@
   "widgets":
   [
     {
-      "name": "HTMLDocumentReader",
-      "version": "19.7.1.10"
+      "name": "HTMLMoveMIApp",
+      "version": "19.9.1.14"
     },
     {
-      "name": "HTMLSigningTableApp",
-      "version": "19.7.1.4"
+      "name": "HTMLReceivedMailApp",
+      "version": "19.9.1.2"
+    },
+    {
+      "name": "HTMLDocumentReader",
+      "version": "19.9.1.1"
+    },
+    {
+      "name": "HTMLThreadManagementApp",
+      "version": "19.9.1.3"
+    },
+    {
+      "name": "HTMLFolderManagementApp",
+      "version": "19.9.1.3"
     }
   ]
-
 }

@@ -1,0 +1,48 @@
+!!!Widgets names!!!
+
+
+
+HTMLDocumentReader
+HTMLSigningTableApp
+HTMLFiledDocs
+HTMLDocumentExplorer
+HTMLSigningRequestsApp
+HTMLThreadApp
+HTMLDocumentSubmissionWidget
+HTMLReceivedMailApp
+HTMLThreadManagementApp
+HTMLFolderManagementApp
+HTMLConditionsWidget
+HTMLAuditLogApp
+HTMLMoveMIApp
+
+
+{
+  "widgets":
+  [
+    {
+      "name": "HTMLDocumentReader",
+      "version": "19.7.2.9"
+    },
+    {
+      "name": "HTMLFiledDocs",
+      "version": "19.7.2.1"
+    },
+    {
+      "name": "HTMLSigningTableApp",
+      "version": "19.7.2.2"
+    },
+    {
+      "name": "HTMLDocumentExplorer",
+      "version": "19.7.2.5"
+    },
+    {
+      "name": "HTMLAuditLogApp",
+      "version": "19.7.2.1"
+    },
+    {
+      "name": "HTMLThreadManagementApp",
+      "version": "19.7.2.2"
+    }
+  ]
+}

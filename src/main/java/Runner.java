@@ -18,10 +18,10 @@ public class Runner {
         ArrayList<WidgetProperty> widgets = properties.getWidgetsList();
 
 
-//        for (WidgetProperty widget1 : widgets) {
-//            new WarFileCopy(widget1.getWidgetName(), widget1.getWidgetVersion(), true);
-//            new WarFileCopy(widget1.getWidgetName(), widget1.getWidgetVersion(), false);
-//        }
+        for (WidgetProperty widget1 : widgets) {
+            new WarFileCopy(widget1.getWidgetName(), widget1.getWidgetVersion(), true);
+            new WarFileCopy(widget1.getWidgetName(), widget1.getWidgetVersion(), false);
+        }
 
         Directories directories = new Directories();
 
