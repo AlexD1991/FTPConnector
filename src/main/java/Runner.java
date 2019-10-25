@@ -33,7 +33,14 @@ public class Runner {
                 System.out.println("dev - " + warFileDev.getDevLogin() + " " + warFileDev.getCertificateId());
                 System.out.println("prod - " + warFileProd.getDevLogin() + " " + warFileProd.getCertificateId());
                 System.out.println();
-            } else if (Arrays.toString(aureliaWidgets).contains(widget.getWidgetName())){
+            } else if (widget.getWidgetName().equals("HTMLDocumentSubmissionWidget")){
+                WarFileSubmissionWidget warFileProd = new WarFileSubmissionWidget(widget.getWidgetDirectoryProd());
+                WarFileSubmissionWidget warFileDev = new WarFileSubmissionWidget(widget.getWidgetDirectoryDev());
+                System.out.println(widget.getWidgetName());
+                System.out.println("dev - " + warFileDev.getDevLogin() + " " + warFileDev.getCertificateId());
+                System.out.println("prod - " + warFileProd.getDevLogin() + " " + warFileProd.getCertificateId());
+                System.out.println();
+            }   else if (Arrays.toString(aureliaWidgets).contains(widget.getWidgetName())){
                 WarFileAurelia warFileProd = new WarFileAurelia(widget.getWidgetDirectoryProd());
                 WarFileAurelia warFileDev = new WarFileAurelia(widget.getWidgetDirectoryDev());
                 System.out.println(widget.getWidgetName());
