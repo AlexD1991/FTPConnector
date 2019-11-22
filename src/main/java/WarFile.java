@@ -12,8 +12,8 @@ import java.util.zip.ZipFile;
  */
 class WarFile {
 
-    private String regexpCertificateId = "(?<=certificateId:\")[a-zA-Z0-9]*(?=\",)";
-    private String regexpLoginForm = "(?<=dev_login:!)[01]";
+    private String regexpCertificateId = "(?<=certificateId(\")?:\")[a-zA-Z0-9]*(?=\",)";
+    private String regexpLoginForm = "(?<=dev_login(\")?:(!)?)(true|false|0|1)";
     private String entryName = "main";
     ZipFile warFile;
     String jsFileText;
